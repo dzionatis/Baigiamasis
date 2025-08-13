@@ -1,10 +1,7 @@
-// controllers/authController.js
-
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
 
-// ✅ Registracija
 export const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
 
@@ -23,7 +20,6 @@ export const registerUser = async (req, res) => {
   }
 };
 
-// ✅ Prisijungimas
 export const loginUser = async (req, res) => {
   const { email, password } = req.body;
 

@@ -1,7 +1,5 @@
-// controllers/questionController.js
 import Question from "../models/Question.js";
 
-// Sukurti naują klausimą
 export const createQuestion = async (req, res) => {
   const { question_text } = req.body;
 
@@ -22,7 +20,21 @@ export const createQuestion = async (req, res) => {
   }
 };
 
-// Gauti visus klausimus
+export const getQuestionById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const question = await Question.findById(id);
+    if (!question) {
+      return res.status(404).json({ msg: "Klausimas nerastas" });
+    }
+    res.json(question);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ msg: "Serverio klaida" });
+  }
+};
+
 export const getAllQuestions = async (req, res) => {
   try {
     const questions = await Question.find().sort({ date: -1 });

@@ -1,54 +1,65 @@
 import { useState } from "react";
-import { login } from "../services/authService";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext"; // ✅ Importuojam kontekstą
+import styles from "./LoginPage.module.css";
 
-function LoginPage() {
-  const navigate = useNavigate();
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
-
+const LoginPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const navigate = useNavigate();
+  const { login } = useAuth(); // ✅ Gaunam login funkciją iš konteksto
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+
     try {
-      const res = await login(form);
-      localStorage.setItem("token", res.data.token);
-      navigate("/questions");
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/auth/login`,
+        { email, password }
+      );
+
+      // ✅ Išsaugom vartotojo duomenis ir tokeną į kontekstą bei localStorage
+      const userData = {
+        name: res.data.user.name,
+        email: res.data.user.email,
+        token: res.data.token,
+      };
+
+      login(userData); // ✅ Konteksto login
+      navigate("/");
     } catch (err) {
-      setError("Prisijungimas nepavyko. Patikrinkite el. paštą ir slaptažodį.");
+      setError(
+        err.response?.data?.msg || "Prisijungti nepavyko. Bandykite dar kartą."
+      );
     }
   };
 
   return (
-    <div>
+    <div className={styles.loginForm}>
       <h2>Prisijungimas</h2>
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <input
-          name="email"
           type="email"
           placeholder="El. paštas"
-          onChange={handleChange}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
         <input
-          name="password"
           type="password"
           placeholder="Slaptažodis"
-          onChange={handleChange}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
         <button type="submit">Prisijungti</button>
-        {error && <p>{error}</p>}
       </form>
     </div>
   );
-}
+};
 
 export default LoginPage;

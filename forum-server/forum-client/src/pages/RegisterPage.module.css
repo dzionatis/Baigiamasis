@@ -1,0 +1,66 @@
+.registerForm {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  font-family: "Inter", sans-serif;
+}
+
+.registerForm h2 {
+  margin-bottom: 20px;
+  font-size: 26px;
+  font-weight: 600;
+  color: #333;
+}
+
+.registerForm form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.registerForm input {
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.registerForm input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+.registerForm button {
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.registerForm button:hover {
+  background: #4338ca;
+  transform: translateY(-1px);
+}
+
+.registerForm p {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+@media (max-width: 480px) {
+  .registerForm {
+    margin: 40px 15px;
+    padding: 20px;
+  }
+}

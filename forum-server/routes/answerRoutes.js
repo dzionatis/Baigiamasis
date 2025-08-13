@@ -10,13 +10,10 @@ import {
 
 const router = express.Router();
 
+router.post("/question/:id", authMiddleware, createAnswer);
+router.get("/question/:id", getAnswersByQuestion);
+router.delete("/:id", authMiddleware, deleteAnswer);
 router.post("/:id/like", authMiddleware, likeAnswer);
 router.post("/:id/dislike", authMiddleware, dislikeAnswer);
-
-router.post("/question/:id/answers", authMiddleware, createAnswer);
-
-router.get("/question/:id/answers", getAnswersByQuestion);
-
-router.delete("/:id", authMiddleware, deleteAnswer);
 
 export default router;

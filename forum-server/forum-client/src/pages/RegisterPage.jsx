@@ -1,60 +1,62 @@
 import { useState } from "react";
-import { register } from "../services/authService";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import styles from "./RegisterPage.module.css";
 
-function RegisterPage() {
-  const navigate = useNavigate();
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
-
+const RegisterPage = () => {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
     try {
-      await register(form);
+      const res = await axios.post(
+        `${process.env.REACT_APP_API_URL}/auth/register`, // pakeista į /auth/register
+        { name, email, password }
+      );
+      alert(res.data.msg);
       navigate("/login");
     } catch (err) {
-      setError("Registracija nepavyko. Patikrinkite duomenis.");
+      setError(
+        err.response?.data?.msg || "Registracija nepavyko. Bandykite dar kartą."
+      );
     }
   };
 
   return (
-    <div>
+    <div className={styles.registerForm}>
       <h2>Registracija</h2>
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <form onSubmit={handleSubmit}>
         <input
-          name="name"
+          type="text"
           placeholder="Vardas"
-          onChange={handleChange}
+          value={name}
+          onChange={(e) => setName(e.target.value)}
           required
         />
         <input
-          name="email"
           type="email"
           placeholder="El. paštas"
-          onChange={handleChange}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
         <input
-          name="password"
           type="password"
           placeholder="Slaptažodis"
-          onChange={handleChange}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           required
         />
         <button type="submit">Registruotis</button>
-        {error && <p>{error}</p>}
       </form>
     </div>
   );
-}
+};
 
 export default RegisterPage;

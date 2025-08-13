@@ -1,0 +1,163 @@
+/* Bendras konteineris */
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f9fafb;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  font-family: "Inter", sans-serif;
+}
+
+h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #111827;
+}
+
+h3 {
+  font-size: 22px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: #374151;
+}
+
+.loading,
+.error {
+  text-align: center;
+  font-size: 18px;
+  color: #6b7280;
+}
+
+/* Atsakymų sąrašas */
+.answersList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Atsakymo kortelė */
+.answerItem {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 15px 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Atsakymo tekstas */
+.answerItem p:first-child {
+  font-size: 16px;
+  color: #111827;
+  margin: 0;
+}
+
+/* Veiksmai: like ir delete */
+.answerActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Like mygtukas su emoji ir skaičiumi */
+.likeSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.likeButton {
+  background-color: #3b82f6; /* šviesiai mėlynas */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.likeButton:hover {
+  background-color: #2563eb;
+}
+
+/* Delete mygtukas dešinėje, raudonas */
+.deleteButton {
+  background-color: #ef4444; /* raudonas */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.deleteButton:hover {
+  background-color: #b91c1c;
+}
+
+/* Forma naujam atsakymui */
+.answerForm {
+  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  resize: vertical;
+}
+
+.textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.submitButton {
+  width: fit-content;
+  padding: 8px 16px;
+  background-color: #10b981; /* žalias */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+.submitButton:hover {
+  background-color: #059669;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .container {
+    margin: 20px;
+    padding: 15px;
+  }
+
+  .answerItem {
+    padding: 12px 15px;
+  }
+
+  .answerActions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .submitButton {
+    width: 100%;
+  }
+}

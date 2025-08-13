@@ -105,8 +105,8 @@ export const deleteAnswer = async (req, res) => {
         .json({ msg: "Neturi teisės ištrinti šio atsakymo" });
     }
 
-    await answer.remove();
-    res.json({ msg: "Atsakymas sėkmingai ištrintas" });
+    await answer.deleteOne();
+    res.json({ msg: "Atsakymas ištrintas" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
