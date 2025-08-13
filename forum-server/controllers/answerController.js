@@ -1,7 +1,5 @@
-// controllers/answerController.js
 import Answer from "../models/Answer.js";
 
-// Like atsakymui
 export const likeAnswer = async (req, res) => {
   const answerId = req.params.id;
   const userId = req.user.id;
@@ -30,7 +28,6 @@ export const likeAnswer = async (req, res) => {
   }
 };
 
-// Dislike atsakymui
 export const dislikeAnswer = async (req, res) => {
   const answerId = req.params.id;
   const userId = req.user.id;
@@ -59,7 +56,6 @@ export const dislikeAnswer = async (req, res) => {
   }
 };
 
-// Sukurti naują atsakymą
 export const createAnswer = async (req, res) => {
   const { answer_text } = req.body;
   const questionId = req.params.id;
@@ -82,7 +78,6 @@ export const createAnswer = async (req, res) => {
   }
 };
 
-// Gauti visus atsakymus konkrečiam klausimui
 export const getAnswersByQuestion = async (req, res) => {
   const questionId = req.params.id;
 
@@ -96,7 +91,6 @@ export const getAnswersByQuestion = async (req, res) => {
   }
 };
 
-// Ištrinti atsakymą (tik autorius)
 export const deleteAnswer = async (req, res) => {
   try {
     const answer = await Answer.findById(req.params.id);
