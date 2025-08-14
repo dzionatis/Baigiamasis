@@ -2,7 +2,7 @@
   max-width: 700px;
   margin: 40px auto;
   padding: 25px 30px;
-  background: #f9fafb; /* švelni foninė spalva */
+  background: #f9fafb;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   display: flex;
@@ -18,7 +18,7 @@
 
 .askContainer p {
   font-size: 16px;
-  color: #065f46; /* žalia sėkmės / klaidos spalva galima individualiai keisti */
+  color: #065f46;
   text-align: center;
   margin-bottom: 10px;
 }
